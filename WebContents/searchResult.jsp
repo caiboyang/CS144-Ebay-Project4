@@ -14,11 +14,10 @@
     <body>
         <div class= "PagePart">    
 			<div>
-			<a href="keywordSearch.html"><button class="button">ebay Keyword Search</button></a>
-			&nbsp;&nbsp;&nbsp;
-			<a href="getItem.html"><button class="button">ebay ItemID Search</button></a>
+			<a href="keywordSearch.html"><button class="button">go to Keyword Search</button></a>
+			&nbsp;
+			<a href="getItem.html"><button class="button">go to ItemID Search</button></a>
 			</div>
-			<br>
 			<div>
                 <form action="/eBay/search" method="GET">
                     <input name="submit" type="submit" value="Search" style="float: right"/>
@@ -41,8 +40,8 @@
 					</thead>
 					<tbody>
 										  
-				<% for (int i=0;i<searchRET.length;i++)  
-				{ 
+				<% 
+                   for (int i=0; i<searchRET.length; i++)  { 
 				%>
 					<tr>
 					<td><a href="/eBay/item?ItemID=<%=searchRET[i].getItemId()%>"> <%=searchRET[i].getItemId()%>  </a> </td>

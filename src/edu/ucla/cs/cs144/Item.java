@@ -24,11 +24,11 @@ public class Item {
     private String seller_rating;
     private String seller_id;
     private String description;
-    private ArrayList<String> categoryList = new ArrayList<>();
+    private String [] categoryList;
 
     Item(String itemID, String name, String currently, String first_Bid, String buy_price, String number_of_Bids,
          String latitude, String longitude, String location, String country, String start, String end,
-         String seller_rating, String seller_id, String description, ArrayList<String> categoryList,
+         String seller_rating, String seller_id, String description, String [] categoryList,
          ArrayList<Bid> bidList) {
         this.itemID = itemID;
         this.name = name;
@@ -110,7 +110,7 @@ public class Item {
         return description;
     }
 
-    public ArrayList<String> getCategoryList(){
+    public String [] getCategoryList(){
         return categoryList;
     }
 }

@@ -238,12 +238,13 @@ public class ItemServlet extends HttpServlet implements Servlet {
                     biddingList.add(newBid);
                 }
             }
+
             Item currentItem = new Item(itemID, name, currently, first_Bid, buy_price, number_of_Bids, latitude,
-                    longitude, location, country, start, end, seller_rating, seller_id, description, categoryList,
-                    biddingList);
+                    longitude, location, country, start, end, seller_rating, seller_id, description,
+                    categoryList.toArray(new String [categoryList.size()]), biddingList);
             request.setAttribute("Item", currentItem);
             request.setAttribute("isEmpty", isEmpty);
-            request.setAttribute("bidding", biddingList);
+            request.setAttribute("bidding", biddingList.toArray(new Bid [biddingList.size()]));
             request.getRequestDispatcher("/itemShow.jsp").forward(request,response);
 
 
