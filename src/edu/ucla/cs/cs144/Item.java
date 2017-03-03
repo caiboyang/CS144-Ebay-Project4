@@ -50,6 +50,8 @@ public class Item {
         this.bidderList = bidderList;
     }
 
+    Item(){}
+
     public String getItemID() {
         return itemID;
     }

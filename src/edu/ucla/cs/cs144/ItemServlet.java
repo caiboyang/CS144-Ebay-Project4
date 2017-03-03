@@ -164,8 +164,16 @@ public class ItemServlet extends HttpServlet implements Servlet {
         // your codes here
         response.setContentType("text/html");
         String itemId = request.getParameter("ItemID");
-        AuctionSearch searchMachine = new AuctionSearch();
-        String XML = searchMachine.getXMLDataForItemId(itemId);
+        String XML = AuctionSearch.getXMLDataForItemId(itemId);
+        int isEmpty = 0;
+
+        if(XML == null || XML.length() == 0){
+            isEmpty = 1;
+            request.setAttribute("isEmpty", isEmpty);
+            request.setAttribute("Item", new Item());
+            request.getRequestDispatcher("/getItem.jsp").forward(request, response);
+            return;
+        }
 
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -234,11 +242,13 @@ public class ItemServlet extends HttpServlet implements Servlet {
                     longitude, location, country, start, end, seller_rating, seller_id, description, categoryList,
                     bidderList);
             request.setAttribute("Item", currentItem);
+            request.setAttribute("isEmpty", isEmpty);
             request.getRequestDispatcher("/getItem.jsp").forward(request,response);
 
 
         }catch(Exception e){
             System.exit(8);
         }
+
     }
 }
