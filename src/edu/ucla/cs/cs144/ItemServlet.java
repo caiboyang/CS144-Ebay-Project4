@@ -19,11 +19,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
-import org.xml.sax.SAXException;
-import org.xml.sax.SAXParseException;
-import org.xml.sax.ErrorHandler;
 import org.xml.sax.InputSource;
-import org.apache.log4j.Logger;
+
 
 public class ItemServlet extends HttpServlet implements Servlet {
        
@@ -31,7 +28,7 @@ public class ItemServlet extends HttpServlet implements Servlet {
 
 
     /**********copying from Myparser in Pro2 **********/
-
+    static final String columnSeparator = "|*|";
 //    static DocumentBuilder builder;
 
 //    static final String[] typeName = {
@@ -162,10 +159,6 @@ public class ItemServlet extends HttpServlet implements Servlet {
 
 
 
-
-
-
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         // your codes here
@@ -193,8 +186,14 @@ public class ItemServlet extends HttpServlet implements Servlet {
             String buy_price = strip(getElementTextByTagNameNR(item, "Buy_Price"));
             String number_of_Bids = getElementTextByTagNameNR(item, "Number_of_Bids");
             Element loc = getElementByTagNameNR(item, "Location");
-            String latitude = loc.getAttribute("Latitude");
-            String longitude = loc.getAttribute("Longitude");
+            String latitude = "";
+            if (loc != null) {
+                latitude = loc.getAttribute("Latitude");
+            }
+            String longitude = "";
+            if (loc != null) {
+                longitude = loc.getAttribute("Longitude");
+            }
             String location = getElementTextByTagNameNR(item, "Location");
             String country = getElementTextByTagNameNR(item, "Country");
             String start = toSQLtime(getElementTextByTagNameNR(item, "Started"));
@@ -203,16 +202,18 @@ public class ItemServlet extends HttpServlet implements Servlet {
             String seller_rating = seller.getAttribute("Rating");
             String seller_id = seller.getAttribute("UserID");
             String description = getElementTextByTagNameNR(item, "Description");
-            ArrayList<String> categoryList = new ArrayList<String>();
+            ArrayList<String> categoryList = new ArrayList<>();
+            ArrayList<String> bidderList = new ArrayList<>();
 
             if (description.length() > 4000) {
                 description = description.substring(0,4000);
             }
-
+            //parse category
             for (Element cat : category) {
                 categoryList.add(cat.getTextContent());
             }
 
+            //parse bidders
             if(Integer.parseInt(number_of_Bids)>0){
                 Element bids  = getElementByTagNameNR(item, "Bids");
                 Element [] bidList = getElementsByTagNameNR(bids, "Bid");
@@ -222,14 +223,19 @@ public class ItemServlet extends HttpServlet implements Servlet {
                     String user_id = info.getAttribute("UserID");
                     String user_loc = getElementTextByTagNameNR(info,"Location");
                     String user_country = getElementTextByTagNameNR(info,"Country");
-//                    user_w.println(user_id);
-//                    bidder_w.println(user_id+columnSeparator+user_rating+columnSeparator+user_loc+columnSeparator+user_country);
 
                     String bid_time = toSQLtime(getElementTextByTagNameNR(bid,"Time"));
                     String amount = strip(getElementTextByTagNameNR(bid, "Amount"));
-//                    bid_w.println(itemID+columnSeparator+user_id+columnSeparator+bid_time+columnSeparator+amount);
+                    bidderList.add(user_id+columnSeparator+user_rating+columnSeparator+user_loc+columnSeparator
+                            +user_country+columnSeparator+bid_time+columnSeparator+amount);
                 }
             }
+            Item currentItem = new Item(itemID, name, currently, first_Bid, buy_price, number_of_Bids, latitude,
+                    longitude, location, country, start, end, seller_rating, seller_id, description, categoryList,
+                    bidderList);
+            request.setAttribute("Item", currentItem);
+            request.getRequestDispatcher("/getItem.jsp").forward(request,response);
+
 
         }catch(Exception e){
             System.exit(8);
