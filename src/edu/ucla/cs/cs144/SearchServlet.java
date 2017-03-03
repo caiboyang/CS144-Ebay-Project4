@@ -15,8 +15,8 @@ public class SearchServlet extends HttpServlet implements Servlet {
     {
         // your codes here
         response.setContentType("text/html");
-        String pageTitle = "Search result";
-        request.setAttribute("title", pageTitle);
+//        String pageTitle = "Search result";
+//        request.setAttribute("title", pageTitle);
 
         String query = request.getParameter("q");
         String skipNumString = request.getParameter("numResultsToSkip");
