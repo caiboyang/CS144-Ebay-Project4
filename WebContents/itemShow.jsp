@@ -57,7 +57,7 @@
 				%>
 				<tr>
 					<th scope="row">Categories <%=i+1%></th>
-					<td>&nbsp;<%=Categories[i]%></td>
+					<td>&nbsp;<%=categories[i]%></td>
 				</tr>
 				<%
 				}
