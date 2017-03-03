@@ -171,7 +171,7 @@ public class ItemServlet extends HttpServlet implements Servlet {
             isEmpty = 1;
             request.setAttribute("isEmpty", isEmpty);
             request.setAttribute("Item", new Item());
-            request.getRequestDispatcher("/getItem.jsp").forward(request, response);
+            request.getRequestDispatcher("/itemShow.jsp").forward(request, response);
             return;
         }
 
@@ -211,7 +211,7 @@ public class ItemServlet extends HttpServlet implements Servlet {
             String seller_id = seller.getAttribute("UserID");
             String description = getElementTextByTagNameNR(item, "Description");
             ArrayList<String> categoryList = new ArrayList<>();
-            ArrayList<String> bidderList = new ArrayList<>();
+            ArrayList<Bid> biddingList = new ArrayList<>();
 
             if (description.length() > 4000) {
                 description = description.substring(0,4000);
@@ -234,16 +234,17 @@ public class ItemServlet extends HttpServlet implements Servlet {
 
                     String bid_time = toSQLtime(getElementTextByTagNameNR(bid,"Time"));
                     String amount = strip(getElementTextByTagNameNR(bid, "Amount"));
-                    bidderList.add(user_id+columnSeparator+user_rating+columnSeparator+user_loc+columnSeparator
-                            +user_country+columnSeparator+bid_time+columnSeparator+amount);
+                    Bid newBid = new Bid(user_id, user_rating, user_loc, user_country, bid_time, amount);
+                    biddingList.add(newBid);
                 }
             }
             Item currentItem = new Item(itemID, name, currently, first_Bid, buy_price, number_of_Bids, latitude,
                     longitude, location, country, start, end, seller_rating, seller_id, description, categoryList,
-                    bidderList);
+                    biddingList);
             request.setAttribute("Item", currentItem);
             request.setAttribute("isEmpty", isEmpty);
-            request.getRequestDispatcher("/getItem.jsp").forward(request,response);
+            request.setAttribute("bidding", biddingList);
+            request.getRequestDispatcher("/itemShow.jsp").forward(request,response);
 
 
         }catch(Exception e){
