@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Project 4 Keyword Search Results</title>
+        <title>Keyword Search Results</title>
     </head>
     <body>
         <div class= "PagePart">    
