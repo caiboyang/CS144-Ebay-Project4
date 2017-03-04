@@ -20,41 +20,42 @@
         </script>
         <style type = "text/css">
             div.suggestions {
-               -moz-box-sizing: border-box;
-               box-sizing: border-box;
-               border: 1px solid black;
-               position: absolute;
-               background-color: white;  
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            border: 1px solid black;
+            position: absolute;
+            background-color: white;
             }
-
             div.suggestions div {
-               cursor: default;
-               padding: 0px 3px;
+            cursor: default;
+            padding: 0px 3px;
             }
-
             div.suggestions div.current {
-               background-color: #3366cc;
-               color: white;
+            background-color: #3366cc;
+            color: white;
             }
-           </style>
-
+        </style>
     </head>
     <body>
         <div class= "PagePart">
-            <div>
-                <a href="index.html"><button class="button">Home</button></a>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="getItem.html"><button class="button">go to ItemID Search</button></a>
-            </div>
+            <h1><a href="index.html"><img src="ebay.png" alt="eBay Logo" height="30" width="75"></a> KeyWord Search</h1>
             <div>
                 <form action="/eBay/search" method="GET">
-                    <div style="overflow: hidden;">
-                        <input name="q" type="text" id="query" id = "info" placeholder="Please enter your keyword here"/>
-                        <input name="numResultsToSkip" type="hidden" value="0" />
-                        <input name="numResultsToReturn" type="hidden" value="40" />
+                    <div style="input-group">
+                        <input type="text" style="height:2em;width:30em" placeholder="Please enter your keyword here" autocomplete="off"
+                            id="info" name="q"/>
+                        <input name="numResultsToSkip" type="hidden" value="0"/>
+                        <input name="numResultsToReturn" type="hidden" value="40"/>
+                        <span class="input-group-btn">
+                        <button class="btn btn-default">Submit</button>
+                        </span>
                     </div>
-                    <input name="submit" type="submit" value="Search"/>
                 </form>
+            </div>
+            <div>
+                <a href="getItem.html">
+                <button class="btn btn-default">Searching by Item ID Instead</button>
+                </a>
             </div>
             <div>
                 <%
