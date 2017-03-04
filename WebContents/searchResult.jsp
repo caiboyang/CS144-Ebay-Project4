@@ -50,7 +50,7 @@
 				%>
 					<tr>
 					<td><a href="/eBay/item?ItemID=<%=searchRET[i].getItemId()%>"> <%=searchRET[i].getItemId()%>  </a> </td>
-					<td><a href="/eBay/item?ItemID=<%=searchRET[i].getName()%>"> <%=searchRET[i].getName()%> </a> </td>
+					<td><a href="/eBay/item?ItemID=<%=searchRET[i].getItemId()%>"> <%=searchRET[i].getName()%> </a> </td>
 					</tr>
 				<%
 				}

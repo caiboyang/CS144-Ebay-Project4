@@ -9,6 +9,9 @@
    if(!isEmpty){
         categories = currentItem.getCategoryList();
    }
+   else{
+        categories = new String[1];
+   }
 %>
     
 <!DOCTYPE html>
@@ -174,7 +177,7 @@
 		<%
          } else{
         %>
-         <p> We are sorry, but there is no item that match your ItemID: <%= ItemID%>.</p>
+         <p> We are sorry, but there is no item that match your Item ID: <%= ItemID%>.</p>
         <%
         }
         %>
