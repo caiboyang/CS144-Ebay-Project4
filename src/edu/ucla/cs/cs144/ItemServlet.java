@@ -150,7 +150,7 @@ public class ItemServlet extends HttpServlet implements Servlet {
             String name = getElementTextByTagNameNR(item, "Name");
             Element [] category = getElementsByTagNameNR(item, "Category");
             String currently = strip(getElementTextByTagNameNR(item, "Currently"));
-            String first_Bid = strip(getElementTextByTagNameNR(item, "first_Bid"));
+            String first_Bid = strip(getElementTextByTagNameNR(item, "First_Bid"));
             String buy_price = strip(getElementTextByTagNameNR(item, "Buy_Price"));
             String number_of_Bids = getElementTextByTagNameNR(item, "Number_of_Bids");
             Element loc = getElementByTagNameNR(item, "Location");
