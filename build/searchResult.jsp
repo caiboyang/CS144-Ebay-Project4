@@ -54,15 +54,25 @@
                     </tbody>
                 </table>
                 <% if (numResultsToSkip-numResultsToReturn >=0){ %>
+<<<<<<< HEAD
                 <a href="search?q=<%=query%>&numResultsToSkip=<%=numResultsToSkip-numResultsToReturn%>&numResultsToReturn=<%=numResultsToReturn%>">
                 <button class="button">Previous Page</button></a>
+=======
+                <a id="Previous Page" href="search?q=<%=query%>&numResultsToSkip=<%=numResultsToSkip-numResultsToReturn%>&numResultsToReturn=<%=numResultsToReturn%>">
+                Previous Page</a>
+>>>>>>> tianye
                 <% } %>
                 <%
                     if (!isLast)
                     {
                     %>
+<<<<<<< HEAD
                 <a href="search?q=<%=query%>&numResultsToSkip=<%=numResultsToSkip+numResultsToReturn%>&numResultsToReturn=<%=numResultsToReturn%>"><button class="button">Next Page</button>
                 </a>
+=======
+                <a id="Next Page" href="search?q=<%=query%>&numResultsToSkip=<%=numResultsToSkip+numResultsToReturn%>&numResultsToReturn=<%=numResultsToReturn%>">
+                Next Page</a>
+>>>>>>> tianye
                 <%
                     }
                     %>

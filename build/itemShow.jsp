@@ -237,7 +237,11 @@
             <%
                 } else{
                 %>
+<<<<<<< HEAD
             <p> We are sorry, but there is no item that match your Item ID: <%= ItemID%>.</p>
+=======
+            <h3> We are sorry, but there is no item that match your Item ID: <%= ItemID%>.</h3>
+>>>>>>> tianye
             <%
                 }
                 %>
