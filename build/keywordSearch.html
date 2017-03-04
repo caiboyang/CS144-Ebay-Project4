@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
     <title>Keyword Search</title>
+    <script type="text/javascript" src="autosuggests.js"></script>
     <script type="text/javascript" src="suggestions.js"></script>
 	<script type="text/javascript"> 
 		window.onload = function () {
-		 var oTextbox = new AutoSuggestControl(document.getElementById("keyword"), new StateSuggestions());
+		 var oTextbox = new AutoSuggestControl(document.getElementById("info"), new StateSuggestions());
 		}
 	</script>
-	<style type = "text.css">
+	<style type = "text/css">
 	div.suggestions {
 	    -moz-box-sizing: border-box;
 	    box-sizing: border-box;
@@ -30,7 +31,7 @@
 <form action="/eBay/search" method="GET">
     <input name="submit" type="submit" value="Search" style="float: right"/>
     <div style="overflow: hidden;">
-        <input name="q" type="text" placeholder="Please enter your keyword here"/>
+        <input type = "text" style="width:340px;" placeholder="Please enter your keyword here" autocomplete="off" id = "info" name = "q" />
         <input name="numResultsToSkip" type="hidden" value="0" />
         <input name="numResultsToReturn" type="hidden" value="40" />
 

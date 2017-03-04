@@ -75,6 +75,7 @@ AutoSuggestControl.prototype.highlightSuggestion = function (oSuggestionNode) {
     for (var i=0; i < this.layer.childNodes.length; i++) {
         var oNode = this.layer.childNodes[i];
         if (oNode == oSuggestionNode) {
+            console.log(oNode)
             oNode.className = "current"
         } else if (oNode.className == "current") {
             oNode.className = "";
@@ -152,23 +153,6 @@ AutoSuggestControl.prototype.showSuggestions = function (aSuggestions) {
     this.layer.style.visibility = "visible";
 };
 
-StateSuggestions.prototype.requestSuggestions = function (oAutoSuggestControl,
-bTypeAhead) {
-    var aSuggestions = [];
-    var sTextboxValue = oAutoSuggestControl.textbox.value;
-
-    if (sTextboxValue.length > 0){
-
-        for (var i=0; i < this.states.length; i++) { 
-            if (this.states[i].indexOf(sTextboxValue) == 0) {
-                aSuggestions.push(this.states[i]);
-            } 
-        }
-    }
-
-    oAutoSuggestControl.autosuggest(aSuggestions, bTypeAhead);
-};
-
 AutoSuggestControl.prototype.nextSuggestion = function () {
     var cSuggestionNodes = this.layer.childNodes;
 
@@ -192,12 +176,15 @@ AutoSuggestControl.prototype.previousSuggestion = function () {
 AutoSuggestControl.prototype.handleKeyDown = function (oEvent) {
     switch(oEvent.keyCode) {
         case 38: //up arrow
+            console.log("up");
             this.previousSuggestion();
             break;
         case 40: //down arrow 
+            console.log("down");
             this.nextSuggestion();
             break;
         case 13: //enter
+            console.log("enter");
             this.hideSuggestions();
             break;
     }

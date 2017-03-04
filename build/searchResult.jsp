@@ -11,6 +11,33 @@
 <html>
     <head>
         <title>Keyword Search Results</title>
+        <script type="text/javascript" src="autosuggests.js"></script>
+        <script type="text/javascript" src="suggestions.js"></script>
+        <script type="text/javascript"> 
+            window.onload = function () {
+                var oTextbox = new AutoSuggestControl(document.getElementById("info"), new StateSuggestions());
+            }
+        </script>
+        <style type = "text/css">
+            div.suggestions {
+               -moz-box-sizing: border-box;
+               box-sizing: border-box;
+               border: 1px solid black;
+               position: absolute;
+               background-color: white;  
+            }
+
+            div.suggestions div {
+               cursor: default;
+               padding: 0px 3px;
+            }
+
+            div.suggestions div.current {
+               background-color: #3366cc;
+               color: white;
+            }
+           </style>
+
     </head>
     <body>
         <div class= "PagePart">
@@ -22,7 +49,7 @@
             <div>
                 <form action="/eBay/search" method="GET">
                     <div style="overflow: hidden;">
-                        <input name="q" type="text" id="query" placeholder="Please enter your keyword here"/>
+                        <input name="q" type="text" id="query" id = "info" placeholder="Please enter your keyword here"/>
                         <input name="numResultsToSkip" type="hidden" value="0" />
                         <input name="numResultsToReturn" type="hidden" value="40" />
                     </div>
