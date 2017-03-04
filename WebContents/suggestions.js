@@ -2,9 +2,10 @@ function StateSuggestions() {
     //any initializations needed go here
 }
 StateSuggestions.prototype.requestSuggestions = function (oAutoSuggestControl,
-bTypeAhead) {
+bTypeAhead, iKeyCode) {
     
     var sTextboxValue = oAutoSuggestControl.textbox.value;
+    sTextboxValue += String.fromCharCode(iKeyCode).toLowerCase()
     var request = new XMLHttpRequest();
 	
 
@@ -13,7 +14,6 @@ bTypeAhead) {
     	var aSuggestions = [];
     	request.onreadystatechange = function () {
 		    if(this.readyState == 4 && this.status == 200){
-		    	
 				var suggestion = this.responseXML.getElementsByTagName("CompleteSuggestion");
 				for(var i=0; i<suggestion.length;i++){
 					

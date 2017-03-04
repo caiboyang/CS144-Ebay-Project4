@@ -51,20 +51,23 @@
     </head>
     <body onload="initMap()">
         <div>
-            <div>
-                <a href="index.html"><button class="button">Home</button></a>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="keywordSearch.html"><button class="button">Keyword Search</button></a>
-            </div>
-            <br>
-            <div style="width: 300px">
-                <form action="/eBay/item" method="GET">
-                    <div style="overflow: hidden;">
-                        <input name="ItemID" type="text" placeholder="Please enter your Item ID"/>          
-                    </div>
-                    <input name="submit" type="submit" value="Search"/>  
-                </form>
-            </div>
+<h1><a href="index.html"><img src="ebay.png" alt="eBay Logo" height="30" width="75"></a> Item Search</h1>
+<div>
+    <form action="/eBay/item" method="GET">
+
+        <div class="input-group">
+            <input name="ItemID" type="text" style="height: 2em" class="form-control" placeholder="Please enter your Item ID here"/>
+            <span class="input-group-btn">
+                <button class="btn btn-default">Submit</button>
+            </span>
+        </div>
+    </form>
+</div>
+<div>
+    <a href="keywordSearch.html">
+        <button class="button">Searching by Keyword instead</button>
+    </a>
+</div>
             <%
                 if(!isEmpty){
                 %>
@@ -237,11 +240,7 @@
             <%
                 } else{
                 %>
-<<<<<<< HEAD
             <p> We are sorry, but there is no item that match your Item ID: <%= ItemID%>.</p>
-=======
-            <h3> We are sorry, but there is no item that match your Item ID: <%= ItemID%>.</h3>
->>>>>>> tianye
             <%
                 }
                 %>

@@ -3,13 +3,19 @@ function AutoSuggestControl(oTextbox, oProvider) {
     this.layer = null;
     this.provider = oProvider;
     this.textbox = oTextbox;
+    this.controlPressed = false;
     this.init(); 
 }
 
 AutoSuggestControl.prototype.autosuggest = function (aSuggestions,
 bTypeAhead) {
+    console.log(aSuggestions);
+    console.log(aSuggestions[0]);
+    console.log(this.textbox.value);
+    console.log(this.textbox.value.length);
+    console.log(aSuggestions[0].substring(0, this.textbox.value.length));
 
-    if (aSuggestions.length > 0) {
+    if (aSuggestions.length > 0 && this.textbox.value == aSuggestions[0].substring(0, this.textbox.value.length)) {
         if (bTypeAhead) {
             this.typeAhead(aSuggestions[0]);
         }
@@ -43,14 +49,23 @@ AutoSuggestControl.prototype.handleKeyUp = function (oEvent) {
 
     var iKeyCode = oEvent.keyCode;
 
-    if (iKeyCode == 8 || iKeyCode == 46) {
-        this.provider.requestSuggestions(this, false);
-
-    } else if (iKeyCode < 32 || (iKeyCode >= 33 && iKeyCode <= 46) || (iKeyCode >= 112 && iKeyCode <= 123)) {
-        //ignore
-    } else {
-        this.provider.requestSuggestions(this, true);
+    if(oEvent.metaKey == true){
+        if(iKeyCode == 65){
+            this.selectRange(0, this.textbox.value.length);
+        }
     }
+    else{
+        console.log("pressed down");
+        if (iKeyCode == 8 || iKeyCode == 46) {
+            this.provider.requestSuggestions(this, false);
+
+        } else if (iKeyCode < 32 || (iKeyCode >= 33 && iKeyCode <= 46) || (iKeyCode >= 112 && iKeyCode <= 123)) {
+            //ignore
+        } else {
+            this.provider.requestSuggestions(this, true);
+    }
+    }
+    
 };
 
 AutoSuggestControl.prototype.init = function () {
@@ -75,7 +90,6 @@ AutoSuggestControl.prototype.highlightSuggestion = function (oSuggestionNode) {
     for (var i=0; i < this.layer.childNodes.length; i++) {
         var oNode = this.layer.childNodes[i];
         if (oNode == oSuggestionNode) {
-            console.log(oNode)
             oNode.className = "current"
         } else if (oNode.className == "current") {
             oNode.className = "";
@@ -174,33 +188,44 @@ AutoSuggestControl.prototype.previousSuggestion = function () {
 };
 
 AutoSuggestControl.prototype.handleKeyDown = function (oEvent) {
-    switch(oEvent.keyCode) {
-        case 38: //up arrow
-            console.log("up");
-            this.previousSuggestion();
-            break;
-        case 40: //down arrow 
-            console.log("down");
-            this.nextSuggestion();
-            break;
-        case 13: //enter
-            console.log("enter");
-            this.hideSuggestions();
-            break;
+
+    var iKeyCode = oEvent.keyCode;
+
+    if(iKeyCode == 38){
+        this.previousSuggestion();
     }
+    else if(iKeyCode == 40){
+        this.nextSuggestion();
+    }
+    else if(iKeyCode == 13){
+        this.hideSuggestions();
+    }
+    else if (iKeyCode == 8 || iKeyCode == 46) {
+        this.provider.requestSuggestions(this, false, iKeyCode);
+    } 
+    else if (iKeyCode < 32 || (iKeyCode >= 33 && iKeyCode <= 46) || (iKeyCode >= 112 && iKeyCode <= 123)) {
+        //ignore
+    } else {
+        if (oEvent.metaKey || oEvent.ctrlKey){
+            // ignore
+        }else{
+            this.provider.requestSuggestions(this, true, iKeyCode);
+        }
+    }
+    
 };
 
 AutoSuggestControl.prototype.init = function () {
 
     var oThis = this;
 
-    this.textbox.onkeyup = function (oEvent) {
-        if (!oEvent) {
-            oEvent = window.event;
-        } 
+    // this.textbox.onkeyup = function (oEvent) {
+    //     if (!oEvent) {
+    //         oEvent = window.event;
+    //     } 
 
-        oThis.handleKeyUp(oEvent);
-    };
+    //     oThis.handleKeyUp(oEvent);
+    // };
 
     this.textbox.onkeydown = function (oEvent) {
 
