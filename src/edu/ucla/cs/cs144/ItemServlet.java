@@ -125,10 +125,10 @@ public class ItemServlet extends HttpServlet implements Servlet {
         response.setContentType("text/html");
         String itemId = request.getParameter("ItemID");
         String XML = AuctionSearch.getXMLDataForItemId(itemId);
-        int isEmpty = 0;
+        boolean isEmpty = false;
 
         if(XML == null || XML.length() == 0){
-            isEmpty = 1;
+            isEmpty = true;
             request.setAttribute("isEmpty", isEmpty);
             request.setAttribute("Item", new Item());
             request.getRequestDispatcher("/itemShow.jsp").forward(request, response);

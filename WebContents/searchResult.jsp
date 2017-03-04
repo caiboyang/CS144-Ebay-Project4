@@ -20,7 +20,7 @@
 			&nbsp;
 			<a href="getItem.html"><button class="button">go to ItemID Search</button></a>
 			</div>
-			<div>
+			<div class="col-md-6 col-md-offset-3 text-center">
                 <form action="/eBay/search" method="GET">
                     <input name="submit" type="submit" value="Search" style="float: right"/>
                     <div style="overflow: hidden;">
@@ -81,7 +81,7 @@
 				<%
                 	} else{
                 %>
-                	<p>There is no item that match your keyword</p>
+                	<p>We are sorry, but there is no item that match your keyword <%= query%></p>
                 <%
                 	}
                 %>

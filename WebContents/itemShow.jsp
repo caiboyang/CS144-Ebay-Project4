@@ -1,8 +1,9 @@
 <%@ page import = "edu.ucla.cs.cs144.*, java.util.*" %>
 <% 
    Item currentItem = (Item) request.getAttribute("Item");
-   int isEmpty = (Integer) request.getAttribute("isEmpty");
+   boolean isEmpty = (Boolean) request.getAttribute("isEmpty");
    Bid[] biddingList = (Bid[]) request.getAttribute("bidding")
+   String ItemID = (String) request.getParameter("ItemID");
    String[] categories
    
    if(!isEmpty){
@@ -36,7 +37,10 @@
 				</div>					
 			</form>
 		</div>
-		<div>	
+		<%
+            if(!isEmpty){
+        %>
+		<div>
 			<h1> Item Info </h1>
 			<table>
 				<tr>
@@ -114,10 +118,7 @@
 					<td>&nbsp;<%=currentItem.getSeller_rating()%></td>
 				</tr>
 			</table>		
-			
 
-
-			
 		</div>
 		<div>
 			<h1>Description</h1>
@@ -170,6 +171,13 @@
 			}
 			%>
 		</div>
+		<%
+         } else{
+        %>
+         <p> We are sorry, but there is no item that match your ItemID: <%= ItemID%>.</p>
+        <%
+        }
+        %>
 	</div>
 	
 </body> 
