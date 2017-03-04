@@ -33,7 +33,7 @@
                 <%
                     if(!isEmpty){
                     %>
-                <table>
+                <table class="table table-hover" border="1">
                     <thead>
                         <tr>
                             <th>Item ID</th>

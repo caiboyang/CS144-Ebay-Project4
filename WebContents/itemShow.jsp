@@ -70,7 +70,7 @@
                 %>
             <div>
                 <h1> Item Info </h1>
-                <table class="table table-hover">
+                <table class="table table-hover" border="1">
                     <tr>
                         <td scope="row">Tags</td>
                         <th scope="col">Information</th>
@@ -92,23 +92,53 @@
                         <th scope="row"></th>
                         <td><%=categories[i]%></td>
                     </tr>
-                    <%
+                        <%
                         }
                         %>
                     <tr>
-                        <th scope="row">Currently($) </th>
-                        <td><%=currentItem.getCurrently()%></td>
+                        <th scope="row">Currently</th>
+                        <%
+                        if(currentItem.getCurrently() != ""){
+                        %>
+                        <td>$ <%=currentItem.getCurrently()%></td>                        
+                        <%
+                        }else{
+                        %>
+                        <td>N/A</td>
+                        <%
+                        }
+                        %>  
                     </tr>
                     <tr>
-                        <th scope="row">Buy_Price($) </th>
-                        <td><%=currentItem.getBuy_price()%></td>
+                        <th scope="row">Buy_Price</th>
+                        <%
+                        if(currentItem.getBuy_price() != ""){
+                        %>
+                        <td>$ <%=currentItem.getBuy_price()%></td>
+                        <%
+                        }else{
+                        %>
+                        <td>N/A</td>
+                        <%
+                        }
+                        %> 
                     </tr>
                     <tr>
-                        <th scope="row">First_Bid($) </th>
-                        <td><%=currentItem.getFirst_Bid()%></td>
+                        <th scope="row">First_Bid</th>
+                        <%
+                        if(currentItem.getFirst_Bid() != ""){
+                        %>
+                        <td>$ <%=currentItem.getFirst_Bid()%></td>
+                        <%
+                        }else{
+                        %>
+                        <td>N/A</td>
+                        <%
+                        }
+                        %> 
                     </tr>
                     <tr>
-                        <th scope="row">NumOfBids </th>
+                        <th scope="row">NumOfBids</th>
                         <td><%=currentItem.getNumber_of_Bids()%></td>
                     </tr>
                     <tr>
@@ -165,7 +195,7 @@
                      {
                     %>
                 <h1>Bidding Info</h1>
-                <table class="table table-hover">
+                <table class="table table-hover" border="1">
                     <thead>
                         <tr>
                             <th>Bidder Number</th>
