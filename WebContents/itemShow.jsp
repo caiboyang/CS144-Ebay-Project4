@@ -2,9 +2,9 @@
 <% 
    Item currentItem = (Item) request.getAttribute("Item");
    boolean isEmpty = (Boolean) request.getAttribute("isEmpty");
-   Bid[] biddingList = (Bid[]) request.getAttribute("bidding")
+   Bid[] biddingList = (Bid[]) request.getAttribute("bidding");
    String ItemID = (String) request.getParameter("ItemID");
-   String[] categories
+   String[] categories;
    
    if(!isEmpty){
         categories = currentItem.getCategoryList();
