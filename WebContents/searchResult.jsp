@@ -3,6 +3,8 @@
    SearchResult[] searchRET = (SearchResult[])request.getAttribute("searchResult");
    int numResultsToSkip = (Integer)request.getAttribute("numResultsToSkip");
    int numResultsToReturn = (Integer)request.getAttribute("numResultsToReturn");
+   boolean isEmpty = (Boolean)request.getAttribute("isEmpty");
+   boolean isLast = (Boolean)request.getAttribute("isLast");
    String query = (String)request.getAttribute("query");
 %>
 
@@ -31,6 +33,9 @@
 			</div>
 
 			<div>
+			<%
+			    if(!isEmpty){
+			%>
 				<table>
 					<thead>
 					  <tr>
@@ -53,7 +58,13 @@
 					  
 					</tbody>
 				</table>
-<!--
+			<%
+			    } else{
+			%>
+			    <p>There is no item that match your keyword</p>
+			<%
+			    }
+			%>
 				
 				<% if (numResultsToSkip-numResultsToReturn >=0){ %>
 				<a id="Previous Page" href="search?q=<%=query%>&numResultsToSkip=<%=numResultsToSkip-numResultsToReturn%>&numResultsToReturn=<%=numResultsToReturn%>">
@@ -61,7 +72,7 @@
 				<% } %>
 				
 				<%
-				if (numResultsToSkip+numResultsToReturn < totalSum)
+				if (!isLast)
 				{
 				%>
 				<a id="Next Page" href="search?q=<%=query%>&numResultsToSkip=<%=numResultsToSkip+numResultsToReturn%>&numResultsToReturn=<%=numResultsToReturn%>">
@@ -69,10 +80,9 @@
 				<%
 				}
 				%>
-				<%int pageStart = numResultsToSkip+1;%>
-				<%int pageEnd = numResultsToSkip+numResultsToReturn>totalSum ? totalSum: numResultsToSkip+numResultsToReturn;%>
-				<p> Item Returned: <%=pageStart%> ~ <%=pageEnd%> / <%=totalSum%> </p>
--->
+				<%int pageStart = numResultsToSkip + 1;%>
+				<%int pageEnd = numResultsToSkip + searchRET.length;%>
+				<p> Current Item Number: <%=pageStart%> - <%=pageEnd%> </p>
 			</div>
 
 

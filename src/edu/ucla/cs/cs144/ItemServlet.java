@@ -28,46 +28,6 @@ public class ItemServlet extends HttpServlet implements Servlet {
 
 
     /**********copying from Myparser in Pro2 **********/
-    static final String columnSeparator = "|*|";
-//    static DocumentBuilder builder;
-
-//    static final String[] typeName = {
-//            "none",
-//            "Element",
-//            "Attr",
-//            "Text",
-//            "CDATA",
-//            "EntityRef",
-//            "Entity",
-//            "ProcInstr",
-//            "Comment",
-//            "Document",
-//            "DocType",
-//            "DocFragment",
-//            "Notation",
-//    };
-
-//    static class MyErrorHandler implements ErrorHandler {
-//
-//        public void warning(SAXParseException exception)
-//                throws SAXException {
-//            fatalError(exception);
-//        }
-//
-//        public void error(SAXParseException exception)
-//                throws SAXException {
-//            fatalError(exception);
-//        }
-//
-//        public void fatalError(SAXParseException exception)
-//                throws SAXException {
-//            exception.printStackTrace();
-//            System.out.println("There should be no errors " +
-//                    "in the supplied XML files.");
-//            System.exit(3);
-//        }
-//
-//    }
 
     /* Non-recursive (NR) version of Node.getElementsByTagName(...)
      */

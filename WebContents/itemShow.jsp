@@ -4,6 +4,7 @@
    int isEmpty = (Integer) request.getAttribute("isEmpty");
    Bid[] biddingList = (Bid[]) request.getAttribute("bidding")
    String[] categories
+   
    if(!isEmpty){
         categories = currentItem.getCategoryList();
    }
