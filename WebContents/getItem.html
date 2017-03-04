@@ -4,13 +4,23 @@
     <title>Item Search</title>
 </head>
 <body>
+<h1>eBay Item Search</h1>
+<div>
+    <a href="index.html">
+        <button class="button">Home</button>
+    </a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="keywordSearch.html">
+        <button class="button">Searching by Keyword</button>
+    </a>
+</div>
 <div>
     <form action="/eBay/item" method="GET">
-        <input name="submit" type="submit" value="Search" style="float: right"/>
+
         <div style="overflow: hidden;">
             <input name="ItemID" type="text" placeholder="Please enter your Item ID here"/>
-
         </div>
+        <input name="submit" type="submit" value="Search"/>
     </form>
 </div>
 </body>

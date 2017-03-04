@@ -81,15 +81,15 @@
                     </tbody>
                 </table>
                 <% if (numResultsToSkip-numResultsToReturn >=0){ %>
-                <a id="Previous Page" href="search?q=<%=query%>&numResultsToSkip=<%=numResultsToSkip-numResultsToReturn%>&numResultsToReturn=<%=numResultsToReturn%>">
-                Previous Page</a>
+                <a href="search?q=<%=query%>&numResultsToSkip=<%=numResultsToSkip-numResultsToReturn%>&numResultsToReturn=<%=numResultsToReturn%>">
+                <button class="button">Previous Page</button></a>
                 <% } %>
                 <%
                     if (!isLast)
                     {
                     %>
-                <a id="Next Page" href="search?q=<%=query%>&numResultsToSkip=<%=numResultsToSkip+numResultsToReturn%>&numResultsToReturn=<%=numResultsToReturn%>">
-                Next Page</a>
+                <a href="search?q=<%=query%>&numResultsToSkip=<%=numResultsToSkip+numResultsToReturn%>&numResultsToReturn=<%=numResultsToReturn%>"><button class="button">Next Page</button>
+                </a>
                 <%
                     }
                     %>

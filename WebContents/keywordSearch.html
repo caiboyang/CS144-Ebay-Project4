@@ -27,15 +27,24 @@
 </style>
 </head>
 <body>
+<h1>eBay KeyWord Search</h1>
+<div>
+    <a href="index.html">
+        <button class="button">Home</button>
+    </a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="getItem.html">
+        <button class="button">Searching by Item ID</button>
+    </a>
+</div>
 <div>
 <form action="/eBay/search" method="GET">
-    <input name="submit" type="submit" value="Search" style="float: right"/>
     <div style="overflow: hidden;">
         <input type = "text" style="width:340px;" placeholder="Please enter your keyword here" autocomplete="off" id = "info" name = "q" />
         <input name="numResultsToSkip" type="hidden" value="0" />
         <input name="numResultsToReturn" type="hidden" value="40" />
-
     </div>
+    <input name="submit" type="submit" value="Search"/>
 </form>
 </div>
 </body>
