@@ -58,13 +58,7 @@
 					  
 					</tbody>
 				</table>
-			<%
-			    } else{
-			%>
-			    <p>There is no item that match your keyword</p>
-			<%
-			    }
-			%>
+
 				
 				<% if (numResultsToSkip-numResultsToReturn >=0){ %>
 				<a id="Previous Page" href="search?q=<%=query%>&numResultsToSkip=<%=numResultsToSkip-numResultsToReturn%>&numResultsToReturn=<%=numResultsToReturn%>">
@@ -83,6 +77,14 @@
 				<%int pageStart = numResultsToSkip + 1;%>
 				<%int pageEnd = numResultsToSkip + searchRET.length;%>
 				<p> Current Item Number: <%=pageStart%> - <%=pageEnd%> </p>
+
+				<%
+                	} else{
+                %>
+                	<p>There is no item that match your keyword</p>
+                <%
+                	}
+                %>
 			</div>
 
 
