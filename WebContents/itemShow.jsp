@@ -50,154 +50,171 @@
         </title>
     </head>
     <body onload="initMap()">
+        <style type="text/css">
+            .left_column{
+            float: left;
+            width: calc(50% - 1.5em);
+            margin-left: 1em;
+            }
+            .right_column{
+            float: right;
+            width: calc(50% - 1.5em);
+            margin-right: 1em;
+            }
+            .wrapper{
+            overflow: auto;
+            }
+        </style>
         <div>
-<h1><a href="index.html"><img src="ebay.png" alt="eBay Logo" height="30" width="75"></a> Item Search</h1>
-<div>
-    <form action="/eBay/item" method="GET">
-
-        <div class="input-group">
-            <input name="ItemID" type="text" style="height: 2em" class="form-control" placeholder="Please enter your Item ID here"/>
-            <span class="input-group-btn">
-                <button class="btn btn-default">Submit</button>
-            </span>
-        </div>
-    </form>
-</div>
-<div>
-    <a href="keywordSearch.html">
-        <button class="button">Searching by Keyword instead</button>
-    </a>
-</div>
+            <h1><a href="index.html"><img src="ebay.png" alt="eBay Logo" height="30" width="75"></a> Item Search</h1>
+            <div>
+                <form action="/eBay/item" method="GET">
+                    <div class="input-group">
+                        <input name="ItemID" type="text" style="height: 2em" class="form-control" placeholder="Please enter your Item ID here"/>
+                        <span class="input-group-btn">
+                        <button class="btn btn-default">Submit</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+            <div>
+                <a href="keywordSearch.html">
+                <button class="button">Searching by Keyword instead</button>
+                </a>
+            </div>
             <%
                 if(!isEmpty){
                 %>
-            <div>
-                <h1> Item Info </h1>
-                <table class="table table-hover" border="1">
-                    <tr>
-                        <td scope="row">Tags</td>
-                        <th scope="col">Information</th>
-                    </tr>
-                    <tr>
-                        <th scope="row">ItemID</th>
-                        <td><%=currentItem.getItemID()%></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Item Name</th>
-                        <td><%=currentItem.getName()%></td>
-                    </tr>
-                    <th scope="row">Category</th>
-                    <%
-                        for (int i=0;i<categories.length;i++)
-                        {
-                        %>
-                    <tr>
-                        <th scope="row"></th>
-                        <td><%=categories[i]%></td>
-                    </tr>
+            <div class="wrapper">
+                <div class="left_column">
+                    <h1> Item Info </h1>
+                    <table class="table table-hover" border="1">
+                        <tr>
+                            <td scope="row">Tags</td>
+                            <th scope="col">Information</th>
+                        </tr>
+                        <tr>
+                            <th scope="row">ItemID</th>
+                            <td><%=currentItem.getItemID()%></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Item Name</th>
+                            <td><%=currentItem.getName()%></td>
+                        </tr>
+                        <th scope="row">Category</th>
                         <%
-                        }
-                        %>
-                    <tr>
-                        <th scope="row">Currently</th>
+                            for (int i=0;i<categories.length;i++)
+                            {
+                            %>
+                        <tr>
+                            <th scope="row"></th>
+                            <td><%=categories[i]%></td>
+                        </tr>
                         <%
-                        if(currentItem.getCurrently() != ""){
-                        %>
-                        <td>$ <%=currentItem.getCurrently()%></td>                        
-                        <%
-                        }else{
-                        %>
-                        <td>N/A</td>
-                        <%
-                        }
-                        %>  
-                    </tr>
-                    <tr>
-                        <th scope="row">Buy_Price</th>
-                        <%
-                        if(currentItem.getBuy_price() != ""){
-                        %>
-                        <td>$ <%=currentItem.getBuy_price()%></td>
-                        <%
-                        }else{
-                        %>
-                        <td>N/A</td>
-                        <%
-                        }
-                        %> 
-                    </tr>
-                    <tr>
-                        <th scope="row">First_Bid</th>
-                        <%
-                        if(currentItem.getFirst_Bid() != ""){
-                        %>
-                        <td>$ <%=currentItem.getFirst_Bid()%></td>
-                        <%
-                        }else{
-                        %>
-                        <td>N/A</td>
-                        <%
-                        }
-                        %> 
-                    </tr>
-                    <tr>
-                        <th scope="row">NumOfBids</th>
-                        <td><%=currentItem.getNumber_of_Bids()%></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Seller Latitude</th>
-                        <td><%=currentItem.getLatitude()%></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Seller Longitude </th>
-                        <td><%=currentItem.getLongitude()%></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Seller Location </th>
-                        <td><%=currentItem.getLocation()%></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Seller Country </th>
-                        <td><%=currentItem.getCountry()%></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Bidding Starting Time </th>
-                        <td><%=currentItem.getStart()%></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Bidding Ending Time </th>
-                        <td><%=currentItem.getEnd()%></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Seller_UserID </th>
-                        <td><%=currentItem.getSeller_id()%></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Seller_Rating </th>
-                        <td><%=currentItem.getSeller_rating()%></td>
-                    </tr>
-                </table>
-            </div>
-            <div>
-                <h1>Description</h1>
-                <p><%=currentItem.getDescription()%></p>
+                            }
+                            %>
+                        <tr>
+                            <th scope="row">Currently</th>
+                            <%
+                                if(currentItem.getCurrently() != ""){
+                                %>
+                            <td>$ <%=currentItem.getCurrently()%></td>
+                            <%
+                                }else{
+                                %>
+                            <td>N/A</td>
+                            <%
+                                }
+                                %>
+                        </tr>
+                        <tr>
+                            <th scope="row">Buy_Price</th>
+                            <%
+                                if(currentItem.getBuy_price() != ""){
+                                %>
+                            <td>$ <%=currentItem.getBuy_price()%></td>
+                            <%
+                                }else{
+                                %>
+                            <td>N/A</td>
+                            <%
+                                }
+                                %>
+                        </tr>
+                        <tr>
+                            <th scope="row">First_Bid</th>
+                            <%
+                                if(currentItem.getFirst_Bid() != ""){
+                                %>
+                            <td>$ <%=currentItem.getFirst_Bid()%></td>
+                            <%
+                                }else{
+                                %>
+                            <td>N/A</td>
+                            <%
+                                }
+                                %>
+                        </tr>
+                        <tr>
+                            <th scope="row">NumOfBids</th>
+                            <td><%=currentItem.getNumber_of_Bids()%></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Seller Latitude</th>
+                            <td><%=currentItem.getLatitude()%></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Seller Longitude </th>
+                            <td><%=currentItem.getLongitude()%></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Seller Location </th>
+                            <td><%=currentItem.getLocation()%></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Seller Country </th>
+                            <td><%=currentItem.getCountry()%></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Bidding Starting Time </th>
+                            <td><%=currentItem.getStart()%></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Bidding Ending Time </th>
+                            <td><%=currentItem.getEnd()%></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Seller_UserID </th>
+                            <td><%=currentItem.getSeller_id()%></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Seller_Rating </th>
+                            <td><%=currentItem.getSeller_rating()%></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="right_column">
+                    <h1>Description</h1>
+                    <p><%=currentItem.getDescription()%></p>
+                </div>
             </div>
             <%
                 if(currentItem.getLatitude() != ""){
                 %>
             <div>
                 <h1> Location </h1>
-                <div id="map" style="width:400px; height:480px"></div>
+                <div id="map" style="height:480px; width:500px; margin-left: 2em;"></div>
             </div>
             <%
                 }
                 %>
             <div>
+                <h1>Bidding Info</h1>
                 <%
                     if (biddingList.length>0)
                      {
                     %>
-                <h1>Bidding Info</h1>
+
                 <table class="table table-hover" border="1">
                     <thead>
                         <tr>

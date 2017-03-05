@@ -3,29 +3,57 @@
 <body>
 <style>
     #mainPage {
-  position: absolute;
+  position: fixed;
   width: 800px;
   height: 600px;
   z-index: 15;
   top: 50%;
-  left: 50%;
+  left: 30%;
   margin: -100px 0 0 -150px;
   }
+    #button{
+        position: relative;
+        width: auto;
+    }
+  input.MyButton {
+    width: 300px;
+    padding: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 150%;
+    background: #3366cc;
+    color: #fff;
+    border: 1px solid #3366cc;
+    border-radius: 10px;
+    -moz-box-shadow:: 6px 6px 5px #999;
+    -webkit-box-shadow:: 6px 6px 5px #999;
+    box-shadow:: 6px 6px 5px #999;
+    }
+    input.MyButton:hover {
+    color: #ffff00;
+    background: #000;
+    border: 1px solid #fff;
+    -moz-box-shadow:: 5px 5px 4px #adadad;
+    -webkit-box-shadow:: 5px 5px 4px #adadad;
+    box-shadow:: 5px 5px 4px #adadad;
+    }
+
 </style>
-<div id="mainPage">
+<div id="mainPage" align="center">
     <img src="ebay.png" alt="eBay Logo" height="160" width="400">
     <h1>Item History Searching Machine</h1>
-    <div class="PagePart">
-        <div>
-            <a href="keywordSearch.html">
-                <button class="button">Searching by Keyword</button>
-            </a>
+
+        <div id="button" align="center">
+            <input class="MyButton" type="button" value="Keyword Search" onclick="window.location.href='keywordSearch.html'" />
             <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+            <input class="MyButton" type="button" value="Item ID Search" onclick="window.location.href='getItem.html'" />
+<!--
             <a href="getItem.html">
-                <button class="button">Searching by Item ID</button>
+                <button class="button">Item ID Search</button>
             </a>
+-->
         </div>
-    </div>
+    
 </div>
 </body>
 
